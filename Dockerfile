@@ -4,6 +4,5 @@ MAINTAINER Carson Sievert <cpsievert1@gmail.com>
 
 USER root
 
-RUN mkdir /etc/R \
-  && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "wget")' >> /etc/R/Rprofile.site \
-	&& Rscript -e "install.packages('plotly')"
+RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "wget")' >> ~/.Rprofile \
+	&& Rscript -e "update.packages(ask=F); install.packages('plotly')"
