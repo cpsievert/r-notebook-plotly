@@ -4,6 +4,6 @@ MAINTAINER Carson Sievert <cpsievert1@gmail.com>
 
 USER root
 
-RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "wget")' >> ~/.Rprofile \
+RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), warn = -1); zz <- file("messages.Rout", open = "wt"); sink(zz, type = "message")' >> ~/.Rprofile \
 	&& echo 'TAR = "/bin/tar"' >> ~/.Renviron \
 	&& Rscript -e "update.packages(ask=F); devtools::install_github('ropensci/plotly')"
